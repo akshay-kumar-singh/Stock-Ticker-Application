@@ -131,15 +131,14 @@ stock-ticker/
 git clone https://github.com/yourusername/stock-ticker.git
 cd stock-ticker
 2. Install Dependencies
-bash
-Copy
-Edit
-npm install
+
+- npm install
+
 3. Start the Development Server
-bash
-Copy
-Edit
-npm run dev
+
+- npm run dev
+
+
 Visit your app at:
 📍 http://localhost:3000
 
