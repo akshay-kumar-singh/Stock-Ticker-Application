@@ -1,151 +1,113 @@
 # 📈 Stock Ticker Application
 
-A **Next.js** application for tracking Indian stock market data with real-time prices, interactive charts, and search functionality.
+A modern **Next.js 14** application for tracking Indian stock market data with real-time prices, interactive charts, and intelligent search functionality.
+
+🔗 **Live Demo**: [https://stock-ticker-application.vercel.app/](https://stock-ticker-application.vercel.app)
 
 ---
 
-## 🚀 Features
+## ✨ Key Features
 
-- 🔍 Stock search with autocomplete  
-- 📈 Interactive price charts (using Recharts)  
-- 📱 Responsive design  
-- 📊 Detailed stock information  
-- 🏷 SEO optimized with dynamic meta tags  
-- 🎨 Modern UI with smooth animations  
+- 🔍 **Smart Search** - Debounced autocomplete with fuzzy matching
+- 📊 **Interactive Charts** - Real-time price visualization using Recharts
+- 📱 **Responsive Design** - Mobile-first approach with Tailwind CSS
+- 🎯 **SEO Optimized** - Dynamic meta tags and Open Graph support
 
 ---
 
-## 🛠 Technologies Used
+## 🛠 Tech Stack
 
-- **Next.js 14**  
-- **React 18**  
-- **TypeScript**  
-- **Tailwind CSS**  
-- **Recharts**  
-- **Fetch API**
+- **Frontend**: Next.js 14, React 18, TypeScript
+- **Styling**: Tailwind CSS with custom animations
+- **Charts**: Recharts for interactive visualizations
+- **API**: Tradebrains REST APIs
+- **Deployment**: Vercel
 
 ---
 
-## 🔌 API Usage
+## 🔌 API Integration
 
-This application uses the following APIs from **Tradebrains**:
+### ✅ Working APIs
+1. **Search API** - `/api/assignment/search`
+   - Autocomplete stock search
+   - Company name resolution
 
-### 1. 🔎 Search API
+2. **Stock Prices API** - `/api/assignment/stock/{symbol}/prices`
+   - Historical price data
+   - OHLCV data for charts
 
-/api/assignment/search?keyword=RELIANCE&length=10
+### ❌ Non-functional API
+- **Stock Ticker API** - `/api/assignment/index/NIFTY/movers/` (Currently unavailable)
 
-- Returns matching stocks for autocomplete
+---
 
-### 2. 📉 Stock Prices API
+## 🚀 Performance Optimizations
 
-/api/assignment/stock/SILVERLINE/prices
+- **Debouncing**: 300ms delay on search to reduce API calls
+- **Loading States**: Skeleton screens and progressive loading
+- **Responsive Images**: Optimized assets and lazy loading
 
+---
 
-- Provides historical price data  
-- Used for chart rendering and price displays
+## 📱 User Workflow
 
-### 3. 📉 Stock Ticker API
-
-> ⚠️ **Note**: The Stock Ticker API (`/api/assignment/index/NIFTY/movers/`) is currently non-functional and not implemented in this project.
+1. **Homepage** → Search stocks or browse featured carousel
+2. **Search** → Debounced autocomplete with instant results
+3. **Stock Details** → Comprehensive charts and market data
+4. **Navigation** → Smooth transitions with loading states
 
 ---
 
 ## 📁 Project Structure
+
 ```
 stock-ticker/
 ├── app/
-│ ├── layout.tsx # Root layout with metadata
-│ ├── page.tsx # Homepage component
-│ ├── stock/
-│ │ └── [symbol]/
-│ │ └── page.tsx # Dynamic stock detail page
-│ └── loading.tsx # Loading component
+│   ├── layout.tsx          # Root layout & SEO
+│   ├── page.tsx            # Homepage
+│   ├── stock/[symbol]/     # Dynamic stock pages
+│   └── loading.tsx         # Loading UI
 ├── components/
-│ ├── SearchBar.tsx # Search functionality
-│ ├── StockCard.tsx # Stock information display
-│ ├── StockChart.tsx # Recharts implementation
-│ └── StockSlider.tsx # Featured stocks carousel
+│   ├── SearchBar.tsx       # Debounced search
+│   ├── StockChart.tsx      # Recharts integration
+│   ├── StockCard.tsx       # Stock data display
+│   └── StockSlider.tsx     # Animated carousel
 ├── lib/
-│ └── api.ts # API functions and utilities
+│   └── api.ts              # API utilities
 ├── types/
-│ └── stock.ts # TypeScript interfaces
-├── public/ # Static assets
-├── styles/ # Global CSS
-├── next.config.js # Next.js configuration
-├── package.json # Project dependencies
-└── tsconfig.json # TypeScript configuration
-
+│   └── stock.ts            # TypeScript interfaces
+└── hook/
+    └── useDebounce.ts      # Custom debounce hook
 ```
 
 ---
 
-## 🧭 Application Workflow
+## 🔧 Quick Start
 
-### ✅ End-to-End User Journey
-
-#### 1. Initial Page Load
-- User lands on `/`
-- Next.js serves homepage and layout with SEO metadata
-- Featured stock slider loads with popular symbols (e.g., `RELIANCE`, `TCS`, etc.)
-
-#### 2. Search Interaction
-- User types in `SearchBar` component
-- Debounced API call triggers after 300ms
-- `/api/assignment/search` returns matched results
-- Results displayed in dropdown
-
-#### 3. Stock Selection
-- On selection, user navigates to `/stock/[symbol]`
-- Loading component shows while data is fetched
-- Two APIs are called in parallel:
-  - Search API (for company name)
-  - Stock Prices API (for chart data)
-
-#### 4. Stock Detail Page
-- Data is formatted and reversed chronologically
-- INR currency formatting applied
-- SEO metadata is dynamically injected
-- Three key components rendered:
-  - `StockCard` (key statistics)
-  - `StockChart` (price graph)
-  - Market metrics section
-
-#### 5. Navigation
-- Back via:
-  - App header
-  - App logo
-  - Browser back
-
-#### 6. Error Handling
-- Invalid symbol shows 404-style "Not Found"
-- API errors show graceful fallback UI
-- Loading skeletons preserve layout while fetching
-
----
-
-## ⚙️ Setup Instructions
-
-### 1. Clone the Repository
-
-```
+```bash
+# Clone repository
 git clone https://github.com/yourusername/stock-ticker.git
 cd stock-ticker
-2. Install Dependencies
 
-- npm install
+# Install dependencies
+npm install
 
-3. Start the Development Server
-
-- npm run dev
-
-
-Visit your app at:
-📍 http://localhost:3000
-
+# Start development server
+npm run dev
 ```
 
-👨‍💻 Author
-- Built with ❤️ by Akshay
+Visit: **http://localhost:3000**
 
-📄 License
-- This project is licensed under the MIT License.
+---
+
+## 🎯 Features Showcase
+
+- **Intelligent Search**: Real-time stock discovery with company matching
+- **Market Dashboard**: Featured stocks with live price updates  
+- **Data Visualization**: Interactive charts with hover tooltips
+- **Mobile Responsive**: Seamless experience across all devices
+- **Error Handling**: Graceful fallbacks for API failures
+
+---
+
+Built with ❤️ using Next.js | **MIT License**
