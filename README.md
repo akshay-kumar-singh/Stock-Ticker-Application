@@ -1,45 +1,57 @@
-# Stock Ticker Application
+# 📈 Stock Ticker Application
 
-A Next.js application for tracking Indian stock market data with real-time prices, interactive charts, and search functionality.
+A **Next.js** application for tracking Indian stock market data with real-time prices, interactive charts, and search functionality.
 
-![Stock Ticker Screenshot](/screenshot.png)
+---
 
-## Features
+## 🚀 Features
 
-- 🔍 Stock search with autocomplete
-- 📈 Interactive price charts (using Recharts)
-- 📱 Responsive design
-- 🔄 Real-time data (15-minute delay)
-- 📊 Detailed stock information
-- 🏷 SEO optimized with dynamic meta tags
-- 🎨 Modern UI with smooth animations
+- 🔍 Stock search with autocomplete  
+- 📈 Interactive price charts (using Recharts)  
+- 📱 Responsive design  
+- 📊 Detailed stock information  
+- 🏷 SEO optimized with dynamic meta tags  
+- 🎨 Modern UI with smooth animations  
 
-## Technologies Used
+---
 
-- Next.js 14
-- React 18
-- TypeScript
-- Tailwind CSS
-- Recharts
-- Fetch API
+## 🛠 Technologies Used
 
-## API Usage
+- **Next.js 14**  
+- **React 18**  
+- **TypeScript**  
+- **Tailwind CSS**  
+- **Recharts**  
+- **Fetch API**
 
-The application uses the following APIs from Tradebrains:
+---
 
-1. **Search API** - `/api/assignment/search?keyword=RELIANCE&length=10`
+## 🔌 API Usage
 
-   - Used for stock search functionality
-   - Returns matching stocks for autocomplete
+This application uses the following APIs from **Tradebrains**:
 
-2. **Stock Prices API** - `/api/assignment/stock/SILVERLINE/prices`
-   - Provides historical price data
-   - Used for chart rendering and price displays
+### 1. 🔎 Search API
 
-**Note**: The Stock Ticker API (`/api/assignment/index/NIFTY/movers/`) is currently non-functional and not implemented in this application.
+/api/assignment/search?keyword=RELIANCE&length=10
 
-## Project Structure
+- Returns matching stocks for autocomplete
 
+### 2. 📉 Stock Prices API
+
+/api/assignment/stock/SILVERLINE/prices
+
+
+- Provides historical price data  
+- Used for chart rendering and price displays
+
+### 3. 📉 Stock Ticker API
+
+> ⚠️ **Note**: The Stock Ticker API (`/api/assignment/index/NIFTY/movers/`) is currently non-functional and not implemented in this project.
+
+---
+
+## 📁 Project Structure
+```
 stock-ticker/
 ├── app/
 │ ├── layout.tsx # Root layout with metadata
@@ -63,103 +75,77 @@ stock-ticker/
 ├── package.json # Project dependencies
 └── tsconfig.json # TypeScript configuration
 
-## Application Workflow
+```
 
-End-to-End User Journey
-Initial Page Load
+---
 
-User accesses the application root URL (/)
+## 🧭 Application Workflow
 
-Next.js serves the homepage (app/page.tsx)
+### ✅ End-to-End User Journey
 
-Layout component (app/layout.tsx) initializes with SEO metadata
+#### 1. Initial Page Load
+- User lands on `/`
+- Next.js serves homepage and layout with SEO metadata
+- Featured stock slider loads with popular symbols (e.g., `RELIANCE`, `TCS`, etc.)
 
-Featured stocks slider loads with hardcoded popular symbols (RELIANCE, TCS, etc.)
+#### 2. Search Interaction
+- User types in `SearchBar` component
+- Debounced API call triggers after 300ms
+- `/api/assignment/search` returns matched results
+- Results displayed in dropdown
 
-Search Interaction
+#### 3. Stock Selection
+- On selection, user navigates to `/stock/[symbol]`
+- Loading component shows while data is fetched
+- Two APIs are called in parallel:
+  - Search API (for company name)
+  - Stock Prices API (for chart data)
 
-User begins typing in the search bar (SearchBar component)
+#### 4. Stock Detail Page
+- Data is formatted and reversed chronologically
+- INR currency formatting applied
+- SEO metadata is dynamically injected
+- Three key components rendered:
+  - `StockCard` (key statistics)
+  - `StockChart` (price graph)
+  - Market metrics section
 
-Input triggers debounced API call after 300ms of inactivity
+#### 5. Navigation
+- Back via:
+  - App header
+  - App logo
+  - Browser back
 
-Search API (/api/assignment/search) is queried with the input text
+#### 6. Error Handling
+- Invalid symbol shows 404-style "Not Found"
+- API errors show graceful fallback UI
+- Loading skeletons preserve layout while fetching
 
-Results are filtered to remove null symbols and displayed in dropdown
+---
 
-Loading spinner appears during API requests
+## ⚙️ Setup Instructions
 
-Stock Selection
+### 1. Clone the Repository
 
-User selects a stock from search results
+```
+git clone https://github.com/yourusername/stock-ticker.git
+cd stock-ticker
+2. Install Dependencies
 
-Application navigates to dynamic route /stock/[symbol]
+- npm install
 
-Loading component displays animated placeholder content
+3. Start the Development Server
 
-Two parallel API calls are made:
+- npm run dev
 
-Search API (to get company name)
 
-Stock Prices API (/api/assignment/stock/[symbol]/prices)
+Visit your app at:
+📍 http://localhost:3000
 
-Stock Detail Page
-
-Data is processed and formatted:
-
-Prices are reversed for chronological chart display
-
-Currency values are formatted for INR
-
-Metadata is generated for SEO
-
-Three main components render:
-
-StockCard (key statistics)
-
-StockChart (price visualization)
-
-Market Statistics (additional metrics)
-
-Dynamic meta tags are injected into page head
-
-Navigation
-
-User can return home via:
-
-Back button in header
-
-Browser back navigation
-
-Clicking application logo
-
-Smooth transitions between pages
-
-Error Handling
-
-Invalid stock symbols show "Not Found" page
-
-API errors display graceful error states
-
-Loading skeletons maintain layout stability
-
-## Setup Instructions
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/yourusername/stock-ticker.git
-   cd stock-ticker
-
-   Install dependencies:
-   npm install
-   ```
-
-Run the development server:
-npm run dev
-
-Open http://localhost:3000 in your browser
-
+```
 
 👨‍💻 Author
+- Built with ❤️ by Akshay
 
-Built with ❤️ by Akshay
+📄 License
+- This project is licensed under the MIT License.
