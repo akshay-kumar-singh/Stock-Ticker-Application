@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     "stocks, Indian stock market, NSE, BSE, stock prices, share market, investment, trading",
   authors: [{ name: "Stock Ticker Team" }],
   robots: "index, follow",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  ),
   openGraph: {
     title: "Stock Ticker - Indian Stock Market Data",
     description: "Real-time stock prices and charts for Indian markets",
@@ -51,6 +54,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${inter.className} bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen flex flex-col`}
+        suppressHydrationWarning={true}
       >
         <main className="flex-1">{children}</main>
 

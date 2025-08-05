@@ -5,13 +5,13 @@ import StockCard from "@/components/StockCard";
 import StockChart from "@/components/StockChart";
 
 interface PageProps {
-  params: { symbol: string };
+  params: Promise<{ symbol: string }>;
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { symbol } = params;
+  const { symbol } = await params;
 
   try {
     const searchResults = await searchStocks(symbol, 1);
@@ -55,6 +55,7 @@ export async function generateMetadata({
       },
     };
   } catch (error) {
+    console.error("Error generating metadata:", error);
     return {
       title: `${symbol} - Stock Information | Stock Ticker`,
       description: `View ${symbol} stock price, charts, and market data`,
@@ -64,7 +65,7 @@ export async function generateMetadata({
 }
 
 export default async function StockDetailPage({ params }: PageProps) {
-  const { symbol } = params;
+  const { symbol } = await params;
 
   try {
     const [prices, searchResults] = await Promise.all([
@@ -128,7 +129,7 @@ export default async function StockDetailPage({ params }: PageProps) {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-100 hover:shadow-md transition-shadow">
                   <p className="text-sm text-blue-600 mb-1 font-medium">
-                    Day's Range
+                    Day&apos;s Range
                   </p>
                   <p className="font-bold text-gray-900 text-xl">
                     ₹{latestPrice.low.toFixed(2)} - ₹
@@ -176,8 +177,8 @@ function StockNotFound({ symbol }: { symbol: string }) {
           Stock Not Found
         </h1>
         <p className="text-gray-600 mb-8">
-          We couldn't find any data for stock symbol "{symbol.toUpperCase()}".
-          Please check the symbol and try again.
+          We couldn&apos;t find any data for stock symbol &quot;
+          {symbol.toUpperCase()}&quot;. Please check the symbol and try again.
         </p>
         <Link
           href="/"

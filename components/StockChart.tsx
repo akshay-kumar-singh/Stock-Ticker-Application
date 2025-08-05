@@ -17,6 +17,15 @@ interface StockChartProps {
   symbol: string;
 }
 
+interface TooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    value: number;
+    [key: string]: unknown;
+  }>;
+  label?: string;
+}
+
 export default function StockChart({ data, symbol }: StockChartProps) {
   if (!data || data.length === 0) {
     return (
@@ -26,7 +35,7 @@ export default function StockChart({ data, symbol }: StockChartProps) {
     );
   }
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
     if (active && payload && payload.length) {
       return (
         <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-xl backdrop-blur-sm bg-opacity-90">
