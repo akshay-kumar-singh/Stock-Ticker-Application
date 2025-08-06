@@ -5,7 +5,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 relative">
       <div className="container mx-auto px-4 py-8 relative z-10">
-        {/* Header */}
         <div className="text-center mb-8 animate-fade-in">
           <div className="inline-block mb-4 p-2 bg-white/30 backdrop-blur-sm rounded-full shadow-lg">
             <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-3 rounded-full">
@@ -33,7 +32,6 @@ export default function Home() {
             Indian stock prices with interactive charts
           </p>
 
-          {/* Search bar needs to be placed above everything else */}
           <div className="relative z-50 max-w-3xl mx-auto mb-6">
             <SearchBar />
           </div>
@@ -51,19 +49,16 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Slider Section */}
         <div className="mb-12 bg-white/50 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-white/20 relative z-0">
           <StockSlider />
         </div>
 
-        {/* Features */}
         <div className="grid md:grid-cols-3 gap-8 mt-8">
           {[
             {
               title: "Smart Search",
               color: "blue",
-              iconPath:
-                "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
+              iconPath: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
               description:
                 "Instantly find stocks with intelligent autocomplete and fuzzy search",
             },
@@ -104,9 +99,7 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                {title}
-              </h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">{title}</h3>
               <p className="text-gray-600 text-lg">{description}</p>
             </div>
           ))}
